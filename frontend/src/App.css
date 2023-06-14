@@ -1,8 +1,77 @@
-.app-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+*{
+  border: 1px solid rgb(23, 10, 10);
 }
+
+@font-face {
+  font-family: 'wild_worldbold';
+  src: url('wildworld_font-webfont.woff2') format('woff2'),
+       url('wildworld_font-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'montserratbold';
+  src: url('montserrat-bold-webfont.woff2') format('woff2'),
+       url('montserrat-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+.app-container {
+  display: grid;
+  height: 100vh;
+  
+  grid-template: 
+  "nav nav nav nav"
+  "sidebar main main main"
+  "sidebar main main main"
+  "sidebar content1 content2 content3"
+  "sidebar footer footer footer";
+  
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.4fr 1.5fr 1.2fr 0.8fr;
+  grid-gap : 0.2rem;
+  
+  
+  
+}
+
+nav{
+  display: flex;
+  grid-area: nav;
+  font-family: 'montserratbold';
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+main{
+  
+  grid-area: main;
+}
+footer{
+  
+  grid-area: footer;
+  
+}
+
+.sidebar{
+ 
+  grid-area: sidebar;
+}
+
+.content1{
+  grid-area: content1;
+}
+.content2{
+  grid-area: content2;
+}
+.content3{
+  grid-area: content3;
+}
+
 
 h1 {
   text-align: center;
@@ -51,4 +120,9 @@ h1 {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.logo{
+  width: 150px;
+  height: auto;
 }

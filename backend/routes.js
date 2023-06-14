@@ -7,10 +7,8 @@ const Task = require('./task');
 
 //Create a task
 router.post('/api/tasks', (req, res) => {
-    const{title, description,status} = req.body;
-    
-    const createdAt = new Date();
-
+    console.log('Create request received');
+    const{title, description,status,createdAt} = req.body;
     const task = new Task( {title, description,status, createdAt} );
 
     task.save()
@@ -26,6 +24,7 @@ router.get('/api/tasks', (req, res) => {
 
 //Update a task
 router.put('/api/tasks/:_id', (req, res) => {
+    console.log('Update request received');
     const {_id} = req.params;
     const {title, description,status} = req.body;
 
