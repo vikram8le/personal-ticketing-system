@@ -1,6 +1,4 @@
-*{
-  border: 1px solid rgb(23, 10, 10);
-}
+
 
 @font-face {
   font-family: 'wild_worldbold';
@@ -24,14 +22,14 @@
   height: 100vh;
   
   grid-template: 
-  "nav nav nav nav"
-  "sidebar main main main"
-  "sidebar main main main"
-  "sidebar content1 content2 content3"
-  "sidebar footer footer footer";
+  "nav nav nav nav nav"
+  "sidebar main main main main"
+  "sidebar content1 content2 content3 content4"
+  "sidebar content1 content2 content3 content4"
+  "sidebar footer footer footer footer";
   
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.4fr 1.5fr 1.2fr 0.8fr;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 0.7fr 1.2fr 0.8fr;
   grid-gap : 0.2rem;
   
   
@@ -50,6 +48,8 @@ nav{
 main{
   
   grid-area: main;
+  height: 100%;
+  overflow: auto;
 }
 footer{
   
@@ -64,6 +64,7 @@ footer{
 
 .content1{
   grid-area: content1;
+  border-left: 1px solid rgba(0, 0, 0, 0.1); 
 }
 .content2{
   grid-area: content2;
@@ -71,7 +72,17 @@ footer{
 .content3{
   grid-area: content3;
 }
+.content4{
+  grid-area: content4;
+}
 
+.content1,
+.content2,
+.content3 {
+  border-right: 1px solid rgba(0, 0, 0, 0.1); 
+  
+
+}
 
 h1 {
   text-align: center;
@@ -81,13 +92,19 @@ h1 {
 .task-form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .task-form input {
   flex: 1;
   padding: 10px;
   font-size: 16px;
+}
+.task-form select {
+  
+  padding: 20px;
+  font-size: 100px;
 }
 
 .task-form button {
@@ -99,9 +116,15 @@ h1 {
   cursor: pointer;
 }
 
+
 .task-list {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  margin: 0.2rem auto;
+  
+  
 }
 
 .task {
@@ -109,14 +132,12 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #f2f2f2;
   margin-bottom: 10px;
 }
 
 .task button {
   padding: 5px 10px;
   font-size: 14px;
-  background-color: #f44336;
   color: white;
   border: none;
   cursor: pointer;

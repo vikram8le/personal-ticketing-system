@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import API_BASE_URL from './config';
 
-function TaskList({ tasks, setTasks }) {
+function TaskList({ tasks, setTasks, taskType }) {
   const [editedTasks, setEditedTasks] = useState([]);
 
   const handleEdit = (taskId) => {
@@ -77,7 +77,7 @@ function TaskList({ tasks, setTasks }) {
   };
 
   return (
-    <div className="task-list">
+    <div className="new-task">
       {tasks.map((task) => (
         <div key={task._id} className="task-item">
           {isTaskEditing(task._id) ? (
@@ -121,14 +121,14 @@ function TaskList({ tasks, setTasks }) {
               <button onClick={() => handleUpdate(task._id)}>Update</button>
             </>
           ) : (
-            <>
+            <div className='task-list'>
               <h3>{task.title}</h3>
               <p>{task.description}</p>
               <p>Status: {task.status}</p>
               <p>Created At: {task.createdAt}</p>
               <button onClick={() => handleDelete(task._id)}>Delete</button>
               <button onClick={() => handleEdit(task._id)}>Edit</button>
-            </>
+            </div>
           )}
         </div>
       ))}

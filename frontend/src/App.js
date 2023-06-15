@@ -21,18 +21,35 @@ function App() {
   const toggleShowAllTasks = () =>{
     setShowAllTasks((prevShowAllTasks) => !prevShowAllTasks );
   }
+
+  const [openTasks, setOpenTasks] = useState([]);
+  const [wipTasks, setWipTasks] = useState([]);
+  const [pendingTasks, setPendingTasks] = useState([]);
+  const [doneTasks, setDoneTasks] = useState([]);
+
+
   useEffect(() => {
     fetchTasks();
   }, []);
 
+  useEffect(() => {
+        setOpenTasks(tasks.filter((task) => task.status === "Open"));
+        setWipTasks(tasks.filter((task) => task.status === "Work in progress"));
+        setPendingTasks(tasks.filter((task) => task.status === "Pending"));
+        setDoneTasks(tasks.filter((task) => task.status === "Done"));
+  }, [tasks]);
+
   const fetchTasks = () => {
     fetch(`${API_BASE_URL}/api/tasks`)
       .then((response) => response.json())
-      .then((data) => setTasks(data))
+      .then((data) => {
+        setTasks(data);
+      })
       .catch((error) => console.error('Error fetching tasks:', error));
-  
+    
     console.log('Task(s) Fetched');
   };
+  
   
 
   const createTask = () => {
@@ -98,7 +115,7 @@ function App() {
       .catch((error) => console.error(error));
   };
   
-  const statusOptions = ["Open", "Work in Progress", "Pending", "Done"];
+  const statusOptions = ["Open", "Work in progress", "Pending", "Done"];
 
   
   return (
@@ -142,24 +159,29 @@ function App() {
 
             <button onClick={createTask}>Add Task</button>
           </div>
-
-          <TaskList tasks={tasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
+          
+         
       </main>
 
       <div> 
         <img src ={logo} className='logo'/>
       </div>
-      <div className='content1'>
-          Content 1
+      <div className='content1'> Open
+      <TaskList tasks={openTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
         </div>
 
-        <div className='content2'>
-          Content 2
+        <div className='content2'>Work in Progress
+        <TaskList tasks={wipTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
         </div>
 
-        <div className='content3'>
-          Content 3
+        <div className='content3'>Pending
+        <TaskList tasks={pendingTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
         </div>
+
+        <div className='content4'>Done
+        <TaskList tasks={doneTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
+        </div>
+
       <footer>Footer</footer>
 
      
