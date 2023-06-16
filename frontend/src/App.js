@@ -117,12 +117,27 @@ function App() {
   
   const statusOptions = ["Open", "Work in progress", "Pending", "Done"];
 
-  
   return (
     <div className="app-container">
-      <nav>YOUR PERSONAL TICKETING SYSTEM
-      
-      </nav>
+    
+      <div className='sidebar'> 
+      <img src ={logo} className='logo'/> 
+      <p>Task Track</p>
+        <div className='sidebar-options'>
+          <div className='sidebar-option'>
+          Overview
+          </div>
+          <div className='sidebar-option'>
+          Tickets
+          </div>
+          <div className='sidebar-option'>
+          To-do Lists
+          </div>
+          <div className='sidebar-option'>
+          Board
+          </div>
+        </div>
+      </div>
       <main>
         
           <div className="task-form">
@@ -163,26 +178,24 @@ function App() {
          
       </main>
 
-      <div> 
-        <img src ={logo} className='logo'/>
-      </div>
-      <div className='content1'> Open
-      <TaskList tasks={openTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
+        
+        <div className='content1'> 
+          <TaskList tasks={openTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
         </div>
 
-        <div className='content2'>Work in Progress
-        <TaskList tasks={wipTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
-        </div>
+        <div className='content2'>
+          <TaskList tasks={wipTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
+          </div>
 
-        <div className='content3'>Pending
-        <TaskList tasks={pendingTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
-        </div>
+          <div className='content3'>
+          <TaskList tasks={pendingTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
+          </div>
 
-        <div className='content4'>Done
-        <TaskList tasks={doneTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
-        </div>
-
-      <footer>Footer</footer>
+          <div className='content4'>
+          <TaskList tasks={doneTasks} setTasks={setTasks} onDelete={deleteTask} onUpdate={updateTask} />
+          </div>
+         
+      <footer></footer>
 
      
      

@@ -17,15 +17,24 @@
 
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+::-webkit-scrollbar {
+  display: none;
+}
 .app-container {
   display: grid;
   height: 100vh;
   
   grid-template: 
-  "nav nav nav nav nav"
+  
+  "sidebar content1 content2 content3 content4"
+  "sidebar content1 content2 content3 content4"
   "sidebar main main main main"
-  "sidebar content1 content2 content3 content4"
-  "sidebar content1 content2 content3 content4"
   "sidebar footer footer footer footer";
   
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
@@ -39,47 +48,109 @@
 nav{
   display: flex;
   grid-area: nav;
+  
   font-family: 'montserratbold';
+  
   font-size: 1.5rem;
-  justify-content: center;
+  gap: .5em;
   align-items: center;
+
+  border-bottom: 1px solid rgba(83, 83, 83, 0.069);
+  
 }
 
 main{
-  
   grid-area: main;
   height: 100%;
-  overflow: auto;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-self: center;
 }
 footer{
-  
+  position: sticky;
   grid-area: footer;
+  bottom: 0;
+  min-height: 1em;
   
+}
+
+.logo{
+  width: 80px;
+  height: auto;
+  margin-left: 1.1em;
+  margin-top: .2em;
+  margin-bottom: .2em;
+
+
 }
 
 .sidebar{
  
   grid-area: sidebar;
+  border-right: 1px solid rgba(2, 0, 37, 0.1);
+  display: flex;
+  
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  
+  border-right: 1px solid rgba(174, 174, 174, 0.1); 
+  background: rgb(5, 0, 24);
+  color: rgb(222, 222, 222);
+  margin-top: 0;
+}
+.sidebar-options{
+  display: flex;
+  
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30%;
+  width: 90%;
+  margin: 10em 0;  
 }
 
+.sidebar-option{
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+border-width: 1px 0;
+border-style: solid;
+border-color: rgba(0, 0, 0, 0.063);
+
+
+}
 .content1{
   grid-area: content1;
-  border-left: 1px solid rgba(0, 0, 0, 0.1); 
+  overflow: auto;
+  display: flex;
+  
+  justify-content: center;
+  padding-top: 1em;
 }
 .content2{
   grid-area: content2;
+  overflow: auto;
+  padding-top: 1em;
 }
 .content3{
   grid-area: content3;
+  overflow: auto;
+  padding-top: 1em;
 }
 .content4{
   grid-area: content4;
+  overflow: auto;
+  padding-top: 1em;
 }
 
 .content1,
 .content2,
 .content3 {
   border-right: 1px solid rgba(0, 0, 0, 0.1); 
+  padding-top: 1em;
   
 
 }
@@ -92,8 +163,10 @@ h1 {
 .task-form {
   display: flex;
   flex-direction: column;
+  justify-self: center;
+  background-color: #211212;
   width: 80%;
-  margin: 0 auto;
+  
 }
 
 .task-form input {
@@ -103,28 +176,87 @@ h1 {
 }
 .task-form select {
   
-  padding: 20px;
-  font-size: 100px;
+  
+  font-size: 20px;
+  padding: 0.25em
 }
 
 .task-form button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4caf50;
+  
+  background-color: hsla(187, 22%, 33%, 1);
   color: white;
   border: none;
   cursor: pointer;
 }
 
 
-.task-list {
+.task-card {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   width: 90%;
+  max-width: 100%;
   margin: 0.2rem auto;
+  background: rgba(173, 226, 225, 0.372);
+  border-radius: 1em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   
   
+  
+}
+
+.top-row{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.task-content{
+  padding: 0 0.5em 0 ;
+  overflow-y: auto;
+  flex-grow: 1;
+  
+  
+}
+
+
+.status-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  height: 30px;
+  width: 120px;
+  min-width: 120px;
+  
+  white-space: nowrap;
+
+  
+}
+
+.open {
+  background: #e2eff1;
+}
+
+.work-in-progress {
+  background: #b6d5e1;
+}
+
+.pending {
+  background:#65799baf;
+}
+.done {
+  background: #46ebdb90;
+}
+.task-buttons{
+  display: flex;
+  flex-direction: row;
+ 
+  justify-content: center;
+  margin-bottom: 0.3em;
 }
 
 .task {
@@ -135,15 +267,4 @@ h1 {
   margin-bottom: 10px;
 }
 
-.task button {
-  padding: 5px 10px;
-  font-size: 14px;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
 
-.logo{
-  width: 150px;
-  height: auto;
-}

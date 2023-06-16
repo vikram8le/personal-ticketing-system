@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import API_BASE_URL from './config';
+import {BsTrash3, BsPencilSquare} from 'react-icons/bs';
+
+
 
 function TaskList({ tasks, setTasks, taskType }) {
   const [editedTasks, setEditedTasks] = useState([]);
@@ -121,14 +124,26 @@ function TaskList({ tasks, setTasks, taskType }) {
               <button onClick={() => handleUpdate(task._id)}>Update</button>
             </>
           ) : (
-            <div className='task-list'>
-              <h3>{task.title}</h3>
-              <p>{task.description}</p>
-              <p>Status: {task.status}</p>
-              <p>Created At: {task.createdAt}</p>
-              <button onClick={() => handleDelete(task._id)}>Delete</button>
-              <button onClick={() => handleEdit(task._id)}>Edit</button>
+            <div className='task-card'>
+              <div className='task-content'>
+                  <div className='top-row'>
+                    
+                        <h3>{task.title}</h3>
+                        <div className={`status-box ${task.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                          <p className='status'>{task.status}</p>
+                        </div>
+                  </div>
+              
+                  <p>{task.description}</p>
+                
+                  <p>Created At: {task.createdAt}</p>
+                  <div className='task-buttons'>
+                    <button onClick={() => handleEdit(task._id)}><BsPencilSquare/></button>
+                    <button onClick={() => handleDelete(task._id)}><BsTrash3/> </button>
+                  </div>
+              </div>            
             </div>
+            
           )}
         </div>
       ))}
